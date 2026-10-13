@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Inventory & Analytics Dashboard</title>
+</head>
+<body>
+
+<script>
+console.log("--- Initializing Inventory System ---");
+
+let products = [
+    { name: "Laptop", price: 800 },
+    { name: "Mouse", price: 25 }
+];
+
+// 1. Take input and validate
+let productName = prompt("Enter product name:");
+let priceInput = prompt("Enter product price:");
+let productPrice = Number(priceInput);
+
+if (
+    productName === null ||
+    productName.trim() === "" ||
+    priceInput === null ||
+    priceInput.trim() === "" ||
+    !Number.isFinite(productPrice) ||
+    productPrice <= 0
+) {
+    console.log("Invalid input! Product not added.");
+} else {
+    productName = productName.trim();
+
+    products.push({
+        name: productName,
+        price: productPrice
+    });
+
+    console.log('[Prompt executed: User adds "' +
+        productName + '" at "$' + productPrice + '"]');
+}
+
+// 2. Assign category using if...else
+function getCategory(price) {
+    if (price < 100) {
+        return "Budget";
+    } else if (price < 200) {
+        return "Standard";
+    } else {
+        return "Premium";
+    }
+}
+
+// 3. Assign badge using switch
+function getBadge(category) {
+    switch (category) {
+        case "Budget":
+            return "Budget";
+        case "Standard":
+            return "Standard";
+        case "Premium":
+            return "Premium";
+        default:
+            return "Unknown";
+    }
+}
+
+// 4. Display inventory using forEach
+console.log("\n--- Processing Inventory Roster (forEach) ---");
+
+products.forEach(function(product) {
+    let category = getCategory(product.price);
+    let badge = getBadge(category);
+
+    console.log("* Item: " + product.name +
+        " ($" + product.price + ") -> Category: " + badge);
+});
+
+// 5. Calculate total inventory value
+function calculateTotal(items) {
+    let total = 0;
+
+    for (let i = 0; i < items.length; i++) {
+        if (!items[i]) {
+            continue;
+        }
+
+        total += items[i].price;
+    }
+
+    return total;
+}
+
+// 6. Arrow function with default parameters
+let calculateFinalPrice = (price, discount = 0, tax = 0) => {
+    let discountedPrice = price - (price * discount / 100);
+    let finalPrice = discountedPrice +
+        (discountedPrice * tax / 100);
+
+    return finalPrice;
+};
+
+// 7. Financial analytics
+console.log("\n--- Financial Analytics ---");
+
+let totalValue = calculateTotal(products);
+console.log("Total Inventory Value: $" + totalValue);
+
+// 8. Filter products under $200
+let affordableProducts = products.filter(function(product) {
+    return product.price < 200;
+});
+
+let affordableNames = affordableProducts.map(function(product) {
+    return product.name;
+});
+
+console.log("Filtered Affordable Items (Under $200): " +
+    JSON.stringify(affordableNames));
+
+// 9. Format report using map
+let report = products.map(function(product) {
+    return product.name.toUpperCase() + ": $" + product.price;
+});
+
+console.log("Formatted Report List: " + JSON.stringify(report));
+
+// 10. Demonstrate discount and tax
+let finalPrice = calculateFinalPrice(800, 10, 5);
+
+console.log("Laptop Price after 10% discount and 5% tax: $" +
+    finalPrice.toFixed(2));
+
+// 11. Search inventory using break and continue
+let searchName = "Mouse";
+let found = false;
+
+for (let i = 0; i < products.length; i++) {
+    if (!products[i] || !products[i].name) {
+        continue;
+    }
+
+    if (products[i].name.toLowerCase() ===
+        searchName.toLowerCase()) {
+        found = true;
+        break;
+    }
+}
+
+if (found) {
+    console.log("Search Result: " + searchName + " found.");
+} else {
+    console.log("Search Result: Product not found.");
+}
+
+// 12. Demonstrate function scope
+function testFunctionScope() {
+    var functionVar = "Inside function";
+    console.log(functionVar);
+}
+
+testFunctionScope();
+
+try {
+    console.log(functionVar);
+} catch (error) {
+    console.log("Function Scope Error: " + error);
+}
+
+// 13. Demonstrate block scope
+{
+    let blockVar = "Inside block";
+    console.log(blockVar);
+}
+
+try {
+    console.log(blockVar);
+} catch (error) {
+    console.log("Scope Test Error: " + error);
+}
+</script>
+
+</body>
+</html>
