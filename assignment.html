@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // Assignment 1: Variables, Data Types, and Console Operations
+
+var name = "Alice";
+let age = 25;
+const isEmployed = true;
+const skills = ["HTML", "CSS", "JavaScript"];
+
+console.log("Name:", name, "(Type:", typeof name + ")");
+console.log("Age:", age, "(Type:", typeof age + ")");
+console.log("Is Employed:", isEmployed, "(Type:", typeof isEmployed + ")");
+console.log("Skills:", skills, "(Type:", typeof skills + ")");
+
+
+//Assignment 2: Operators, Expressions, and Input Handling
+
+
+let bill = Number(prompt("Enter bill amount:"));
+let tipPercent = Number(prompt("Enter tip percentage:"));
+
+let tip = bill * tipPercent / 100;
+let total = bill;
+
+total += tip;
+
+console.log("Subtotal: $" + bill);
+console.log("Tip Percentage: " + tipPercent + "%");
+console.log("Calculated Tip: $" + tip);
+console.log("Total Amount to Pay: $" + total);
+
+
+// Assignment 3: Conditional Logic Implementation
+
+
+let score = 85;
+let grade;
+
+if (score >= 90) {
+    grade = "A";
+} else if (score >= 80) {
+    grade = "B";
+} else if (score >= 70) {
+    grade = "C";
+} else if (score >= 60) {
+    grade = "D";
+} else {
+    grade = "F";
+}
+
+switch (grade) {
+    case "A":
+        grade = "A";
+        break;
+    case "B":
+        grade = "B";
+        break;
+    case "C":
+        grade = "C";
+        break;
+    case "D":
+        grade = "D";
+        break;
+    default:
+        grade = "F";
+}
+
+let status = score >= 60 ? "Passed" : "Failed";
+
+console.log("Score: " + score);
+console.log("Grade: " + grade);
+console.log("Status: " + status);
+
+ 
+//  Assignment 4: Loop Control Structures
+
+console.log("-- Multiplication Table of 5 --");
+
+for (let i = 1; i <= 5; i++) {
+    console.log("5 x " + i + " = " + (5 * i));
+}
+
+console.log("-- First number > 10 divisible by 6 --");
+
+let num = 11;
+
+while (num > 10) {
+    if (num % 6 == 0) {
+        console.log("Found: " + num);
+        break;
+    }
+    num++;
+}
+
+let i = 0;
+
+do {
+    i++;
+
+    if (i == 3) {
+        continue;
+    }
+
+    console.log(i);
+
+} while (i < 5);
+
+// Assignment 5: Function Architecture and Scope
+
+
+
+function rectangleArea(length = 5, width = 4) {
+    return length * width;
+}
+
+let arrowArea = (length = 5, width = 4) => {
+    return length * width;
+};
+
+console.log("Standard Function Area (Default 5x4): " + rectangleArea());
+
+console.log("Arrow Function Area (Custom 10x3): " + arrowArea(10, 3));
+
+{
+    let blockVar = 10;
+}
+
+try {
+    console.log(blockVar);
+} catch (error) {
+    console.log("Scope Test Error: " + error);
+}
+
+// Assignment 6: Arrays, Objects, and Core Methods
+
+
+let products = [
+    { name: "Laptop", price: 800 },
+    { name: "Mouse", price: 25 },
+    { name: "Keyboard", price: 45 }
+];
+
+console.log("-- All Products (forEach) --");
+
+products.forEach(function(product) {
+    console.log("Item: " + product.name + " - Price: $" + product.price);
+});
+
+console.log("-- Filtered Products (Price < $50) --");
+
+let filteredProducts = products.filter(function(product) {
+    return product.price < 50;
+});
+
+console.log(filteredProducts);
+
+console.log("-- Mapped Product Tags (map) --");
+
+let mappedProducts = products.map(function(product) {
+    return product.name.toUpperCase() + " costs $" + product.price;
+});
+
+console.log(mappedProducts);
+
+
+
+
+</script>
+</body>
+</html>
